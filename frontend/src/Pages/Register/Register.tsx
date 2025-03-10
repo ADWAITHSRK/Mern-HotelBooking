@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Form, Input, Button, Card, Typography } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useRegisterMutation } from "../../Redux/Features/userApiSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const { Title } = Typography;
 
@@ -13,17 +16,22 @@ interface RegisterFormValues {
 }
 
 const RegisterPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [register] = useRegisterMutation();
   const [form] = Form.useForm<RegisterFormValues>();
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: RegisterFormValues) => {
-    setLoading(true);
-    console.log("Register Values:", values);
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false);
-      alert("Registration successful!");
-    }, 2000);
+    try {
+      setLoading(true);
+      console.log("Register Values:", values);
+      // Simulate API call
+      await register(values).unwrap();
+      toast.success("Registration successful!");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -33,15 +41,9 @@ const RegisterPage: React.FC = () => {
           <Title level={3} className="text-blue-600">
             Create a New Account
           </Title>
-          
         </div>
 
-        <Form
-          form={form}
-          name="register"
-          onFinish={onFinish}
-          className="mt-6"
-        >
+        <Form form={form} name="register" onFinish={onFinish} className="mt-6">
           {/* First Name and Last Name */}
           <div className="flex gap-4">
             <Form.Item
@@ -72,7 +74,6 @@ const RegisterPage: React.FC = () => {
             </Form.Item>
           </div>
 
-          
           <Form.Item
             name="email"
             rules={[
@@ -101,7 +102,7 @@ const RegisterPage: React.FC = () => {
           </Form.Item>
 
           {/* Submit Button */}
-          <Form.Item >
+          <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
