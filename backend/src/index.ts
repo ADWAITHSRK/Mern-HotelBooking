@@ -27,7 +27,7 @@ app.get("/health", (req: Request, res: Response) => {
   
   const PORT = process.env.PORT || 7000;
 
-
+  app.use(express.static(path.join(__dirname,"../../frontend/dist")))
   app.use("/api/user",userRoutes)
 
 
