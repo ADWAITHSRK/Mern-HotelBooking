@@ -1,35 +1,35 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Card, Typography } from "antd";
-import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import {  LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useRegisterMutation } from "../../Redux/Features/userApiSlice";
+import { useLoginMutation } from "../../Redux/Features/userApiSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const { Title } = Typography;
 
-interface RegisterFormValues {
+interface LoginFormValues {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
+
 }
 
-const RegisterPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const [register] = useRegisterMutation();
-  const [form] = Form.useForm<RegisterFormValues>();
+  const [login] = useLoginMutation();
+  const [form] = Form.useForm<LoginFormValues>();
   const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values: RegisterFormValues) => {
+  const onFinish = async (values: LoginFormValues) => {
     try {
       setLoading(true);
-      console.log("Register Values:", values);
+      console.log("Login Values:", values);
       // Simulate API call
-      await register(values).unwrap();
-      toast.success("Registration successful!");
+      await login(values).unwrap();
+      toast.success("Login successful!");
       navigate("/");
     } catch (error) {
+        toast.error("Login Failed");
       console.log(error);
     }
   };
@@ -39,39 +39,14 @@ const RegisterPage: React.FC = () => {
       <Card className="w-full max-w-xl shadow-sm rounded-lg">
         <div className="text-center">
           <Title level={3} className="text-blue-600">
-            Create a New Account
+            Login
           </Title>
         </div>
 
         <Form form={form} name="register" onFinish={onFinish} className="mt-6">
           {/* First Name and Last Name */}
           <div className="flex gap-4">
-            <Form.Item
-              name="firstName"
-              rules={[
-                { required: true, message: "Please input your first name!" },
-              ]}
-              className="flex-1"
-            >
-              <Input
-                prefix={<UserOutlined className="text-gray-400" />}
-                placeholder="First Name"
-                className="w-full"
-              />
-            </Form.Item>
-            <Form.Item
-              name="lastName"
-              rules={[
-                { required: true, message: "Please input your last name!" },
-              ]}
-              className="flex-1"
-            >
-              <Input
-                prefix={<UserOutlined className="text-gray-400" />}
-                placeholder="Last Name"
-                className="w-full"
-              />
-            </Form.Item>
+           
           </div>
 
           <Form.Item
@@ -109,14 +84,14 @@ const RegisterPage: React.FC = () => {
               loading={loading}
               className="mx-auto w-full bg-blue-600 hover:bg-blue-700"
             >
-              Sign Up
+              Sign In
             </Button>
           </Form.Item>
 
           {/* Terms and Conditions */}
           <Form.Item>
             <div className="text-center text-gray-600">
-              By clicking Sign Up, you agree to our{" "}
+              By clicking Sign In, you agree to our{" "}
               <Link to="/terms" className="text-blue-600 hover:underline">
                 Terms
               </Link>
@@ -133,11 +108,10 @@ const RegisterPage: React.FC = () => {
           </Form.Item>
         </Form>
 
-        {/* Login Link */}
         <div className="text-center mt-4">
-          <span className="text-gray-600">Already have an account? </span>
-          <Link to="/login" className="text-blue-600 hover:underline">
-            Log In
+          <span className="text-gray-600">Dont have an account? </span>
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Sign Up
           </Link>
         </div>
       </Card>
@@ -145,4 +119,4 @@ const RegisterPage: React.FC = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

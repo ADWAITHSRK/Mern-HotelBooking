@@ -32,8 +32,8 @@ const Header = () => {
     ];
 
   return (
-    <div className="bg-blue-700 py-4 px-6">
-      <div className="container mx-auto flex justify-between items-center">
+    <div className="bg-blue-700 py-5 px-6 h-20">
+      <div className="container mx-auto flex justify-between items-cente px-8">
         <span className="text-3xl text-white font-bold tracking-tight">
           <Link to="/">Weekend.Com</Link>
         </span>
