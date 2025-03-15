@@ -1,11 +1,10 @@
 import express from "express";
 import { createHotel } from "../controller/hotelController";
-import authMiddleware from "../middleware/auth";
-
+import {upload,uploadToCloudinary} from "../middleware/multer"
 const router = express.Router();
 
 
 // Get User Profile (Protected Route)
-router.get("/createHotel", authMiddleware,createHotel );
+router.post("/createhotel", upload.array("images", 5),uploadToCloudinary, createHotel);
 
 export default router;

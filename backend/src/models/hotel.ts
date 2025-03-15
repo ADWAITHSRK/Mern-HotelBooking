@@ -31,29 +31,29 @@ export type hotelType = {
 };
 
 const hotelSchema = new mongoose.Schema<hotelType>({
-  userId: { type: String, required: true },
-  name: { type: String, required: true },
-  city: { type: String, required: true },
+  userId: { type: String },
+  name: { type: String },
+  city: { type: String},
 
-  country: { type: String, required: true },
+  country: { type: String},
 
-  description: { type: String, required: true },
+  description: { type: String},
 
-  type: { type: String, required: true },
+  type: { type: String},
 
-  adultCount: { type: Number, required: true },
+  adultCount: { type: Number },
 
-  childCount: { type: Number, required: true },
+  childCount: { type: Number},
 
-  facilities: [{ type: String, required: true }],
+  facilities: [{ type: String}],
 
-  pricePerNight: { type: Number, required: true },
+  pricePerNight: { type: Number },
 
-  starRating: { type: Number, required: true, min: 1, max: 5 },
+  starRating: { type: Number, min: 1, max: 5 },
 
-  imageUrls: [{ type: String, required: true }],
+  imageUrls: [{ type: String}],
 
-  lastUpdated: { type: Date, required: true },
+  lastUpdated: { type: Date },
 });
 
 const Hotel = mongoose.model<hotelType>("Hotel",hotelSchema)

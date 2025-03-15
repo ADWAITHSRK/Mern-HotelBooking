@@ -4,11 +4,12 @@ import Hotel from "../models/hotel";
 export const createHotel = async (req:Request,res:Response) :Promise<any> => {
     try{
         const {name,city,country,description,type,adultCount,childCount,facilities,pricePerNight,starRating } = req.body
-
-        if (! req.files || !Array.isArray(req.files)) {
-            return res.status(400).json({message:"Image Files are Required"})
+        const cloudinaryUrls = req.body.cloudinaryUrls;
+        if (cloudinaryUrls.length === 0) {
+            console.error('No Cloudinary URLs found.');
+            return res.status(500).send('Internal Server Error');
         }
-        const imageUrls = ( req.files as Express.Multer.File[] ).map((file)=>file.path)
+        const imageUrls = cloudinaryUrls
         const newHotel = new Hotel ({
             userId:req.userId,
             name,

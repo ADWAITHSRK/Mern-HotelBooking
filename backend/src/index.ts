@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import connectDB from "./config/db"; 
 import userRoutes from './routes/userRoute'
-
+import hotelRoute from './routes/hotelRoute'
 const app = express();
 const corsOptions = {
   origin: 'http://localhost:5173', // Replace with your frontend URL
@@ -29,6 +29,8 @@ app.get("/health", (req: Request, res: Response) => {
 
   app.use(express.static(path.join(__dirname,"../../frontend/dist")))
   app.use("/api/user",userRoutes)
+  app.use("/api/hotel",hotelRoute)
+
 
 
   app.listen(PORT,()=>{

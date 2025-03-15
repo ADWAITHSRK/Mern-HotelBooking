@@ -4,6 +4,7 @@ import RegisterPage from "./Pages/Register/Register"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginPage from "./Pages/LoginPage.tsx/LoginPage";
+import CreateHotel from "./Pages/HotelCreate/HotelCreate";
 
 const App = () => {
   return (
@@ -23,6 +24,8 @@ const App = () => {
       <Route path="/" element={<Layout><p>Home page</p></Layout>}/>
       <Route path="/register" element={<Layout><RegisterPage/></Layout>}/>
       <Route path="/login" element={<Layout><LoginPage/></Layout>}/>
+      <Route path="/createhotel" element={<Layout><CreateHotel/></Layout>}/>
+
 
 
       </Routes>
