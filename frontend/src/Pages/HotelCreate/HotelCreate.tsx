@@ -58,9 +58,9 @@ const CreateHotel = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg py-4 my-6">
       <h2 className="text-xl font-semibold mb-4">Create Hotel</h2>
-      <Form form={form} layout="vertical" onFinish={handleSubmit}>
+      <Form form={form} layout="horizontal" onFinish={handleSubmit}>
         <Form.Item name="name" label="Hotel Name" rules={[{ required: true, message: "Hotel name is required" }]}>
           <Input placeholder="Enter hotel name" />
         </Form.Item>
