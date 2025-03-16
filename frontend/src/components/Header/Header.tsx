@@ -27,7 +27,7 @@ const Header = () => {
   : [
       {
         key: "sign-in",
-        label: <Link to="/sign-in">Sign In</Link>,
+        label: <Link to="/register">Sign In</Link>,
       },
     ];
 
@@ -58,7 +58,7 @@ const Header = () => {
             <>
               {" "}
               <Link
-                to="/sign-in"
+                to="/register"
                 className="bg-white text-blue-600 px-2 py-1 rounded font-bold hover:bg-gray-100"
               >
                 Sign In

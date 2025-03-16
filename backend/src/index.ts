@@ -31,6 +31,9 @@ app.get("/health", (req: Request, res: Response) => {
   app.use("/api/user",userRoutes)
   app.use("/api/hotel",hotelRoute)
 
+  app.get("*",(req:Request,res:Response)=>{
+    res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"))
+  })
 
 
   app.listen(PORT,()=>{

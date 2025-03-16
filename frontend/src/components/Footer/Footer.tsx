@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
       <div className="bg-blue-800 py-10 mt-auto">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
+        <div className="container mx-auto flex flex-col px-6 md:px-0 md:flex-row justify-between items-start gap-8">
           {/* Brand Section */}
           <div className="flex flex-col gap-4">
             <span className="text-3xl text-white font-bold tracking-tight">
